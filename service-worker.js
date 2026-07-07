@@ -1,4 +1,4 @@
-const CACHE_NAME = "vault-v2";
+const CACHE_NAME = "vault-v3";
 
 const FILES_TO_CACHE = [
   "./",
