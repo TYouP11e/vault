@@ -1,0 +1,143 @@
+/* ==========================================
+   VAULT
+   ANIMATIONS
+========================================== */
+
+/* ---------- Page Transitions ---------- */
+
+@keyframes pageFadeUp{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ---------- Card Entrance ---------- */
+
+@keyframes cardFadeUp{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ---------- Soft Pop ---------- */
+
+@keyframes softPop{
+    0%{
+        transform:scale(.96);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* ---------- Balance Count Feel ---------- */
+
+@keyframes balancePulse{
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.025);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ---------- Progress Glow ---------- */
+
+@keyframes progressGlow{
+    0%{
+        box-shadow:0 0 0 rgba(45,124,255,0);
+    }
+
+    50%{
+        box-shadow:0 0 18px rgba(45,124,255,.35);
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(45,124,255,0);
+    }
+}
+
+/* ---------- Slide In Right ---------- */
+
+@keyframes slideInRight{
+    from{
+        opacity:0;
+        transform:translateX(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* ---------- Slide In Left ---------- */
+
+@keyframes slideInLeft{
+    from{
+        opacity:0;
+        transform:translateX(-18px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* ---------- Applied Animations ---------- */
+
+.card,
+.balance-card,
+.goal-card,
+.vault-category,
+.activity-row{
+    animation:cardFadeUp var(--transition-normal);
+}
+
+#current-balance.updated{
+    animation:balancePulse .28s ease;
+}
+
+.progress-fill.updated,
+.overall-progress-fill.updated{
+    animation:progressGlow .65s ease;
+}
+
+.nav-item.active{
+    animation:softPop .22s ease;
+}
+
+/* ---------- Motion Safety ---------- */
+
+@media (prefers-reduced-motion: reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
+    }
+}

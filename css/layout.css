@@ -1,0 +1,185 @@
+/* ==========================================
+   VAULT
+   LAYOUT
+========================================== */
+
+/* ---------- App Shell ---------- */
+
+.app{
+    width:100%;
+    max-width:var(--app-width);
+    height:100vh;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at top right, rgba(45,124,255,.14), transparent 32%),
+        var(--background);
+}
+
+/* ---------- Pages ---------- */
+
+.page{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    height:100%;
+    overflow:hidden;
+}
+
+.page.active{
+    display:block;
+}
+
+.page-content{
+    height:100%;
+    overflow-y:auto;
+
+    padding:var(--page-padding);
+    padding-bottom:calc(var(--navbar-height) + var(--space-6));
+
+    animation:pageFadeUp var(--transition-normal);
+}
+
+/* ---------- Page Header / Title ---------- */
+
+.page-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:var(--space-6);
+}
+
+.page-title h1{
+    font-size:var(--font-xl);
+    font-weight:var(--weight-semibold);
+    letter-spacing:-.04em;
+}
+
+/* ---------- Home Specific Layout ---------- */
+
+#home .page-content{
+    padding-top:var(--space-7);
+}
+
+#home .balance-card{
+    margin-bottom:var(--space-4);
+}
+
+.action-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:var(--space-3);
+
+    margin-bottom:var(--space-4);
+}
+
+/* ---------- Lists ---------- */
+
+#goal-list,
+#vault-categories,
+#activity-list{
+    display:flex;
+    flex-direction:column;
+    gap:var(--space-3);
+}
+
+/* ---------- Bottom Navigation ---------- */
+
+.bottom-navigation{
+    position:absolute;
+    left:var(--space-4);
+    right:var(--space-4);
+    bottom:var(--space-4);
+
+    height:72px;
+
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    align-items:center;
+
+    padding:var(--space-2);
+
+    background:rgba(19,22,29,.92);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+
+    box-shadow:var(--shadow-lg);
+
+    z-index:50;
+}
+
+.nav-item{
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:var(--space-1);
+
+    border-radius:var(--radius-lg);
+
+    color:var(--text-muted);
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.nav-item span:first-child{
+    font-size:var(--icon-medium);
+}
+
+.nav-item span:last-child{
+    font-size:var(--font-xs);
+    font-weight:var(--weight-medium);
+}
+
+.nav-item.active{
+    color:var(--primary);
+}
+
+.nav-item:active{
+    transform:scale(.96);
+}
+
+/* ---------- Desktop Preview ---------- */
+
+@media (min-width:700px){
+
+    body{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        background:
+            radial-gradient(circle at top left, rgba(45,124,255,.14), transparent 26%),
+            radial-gradient(circle at bottom right, rgba(139,92,246,.12), transparent 28%),
+            #050608;
+    }
+
+    .app{
+        height:920px;
+        max-height:92vh;
+
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:42px;
+
+        box-shadow:
+            0 30px 80px rgba(0,0,0,.55),
+            inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+}
+
+.bottom-navigation.four-items{
+    grid-template-columns:repeat(4, 1fr);
+}
