@@ -183,21 +183,130 @@
     </main>
 </section>
 
-<section id="documents" class="page">
+<section id="records" class="page">
     <main class="page-content">
+
         <div class="page-title">
-            <h1>Documents</h1>
+            <h1>Records</h1>
         </div>
 
-        <div class="card">
+        <div class="records-overview card">
             <div class="card-header">
-                <h2>Storage</h2>
+                <h2>Registry Completion</h2>
+                <span>0%</span>
             </div>
-            <p>Insurance, registration, receipts, and warranty docs later.</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill blue" style="width:0%"></div>
+            </div>
+
+            <p>Fill this in as your motorcycle plan becomes real.</p>
         </div>
+
+        <div id="records-list">
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">health_and_safety</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Health Card</h3>
+                    <p>Card Number</p>
+                    <div class="skeleton-line long"></div>
+                    <p>Expires</p>
+                    <div class="skeleton-line medium"></div>
+                </div>
+            </div>
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">badge</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Driver Licence</h3>
+                    <p>Class</p>
+                    <div class="skeleton-line short"></div>
+                    <p>Licence Number</p>
+                    <div class="skeleton-line long"></div>
+                </div>
+            </div>
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">two_wheeler</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Motorcycle</h3>
+                    <p>VIN</p>
+                    <div class="skeleton-line long"></div>
+                    <p>Plate</p>
+                    <div class="skeleton-line medium"></div>
+                </div>
+            </div>
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">shield</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Insurance</h3>
+                    <p>Provider</p>
+                    <div class="skeleton-line medium"></div>
+                    <p>Policy Number</p>
+                    <div class="skeleton-line long"></div>
+                </div>
+            </div>
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">description</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Registration</h3>
+                    <p>Registration Number</p>
+                    <div class="skeleton-line long"></div>
+                    <p>Expires</p>
+                    <div class="skeleton-line medium"></div>
+                </div>
+            </div>
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">inventory_2</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Warranty & Receipts</h3>
+                    <p>Serial Numbers</p>
+                    <div class="skeleton-line long"></div>
+                    <p>Purchase Dates</p>
+                    <div class="skeleton-line medium"></div>
+                </div>
+            </div>
+
+            <div class="record-card">
+                <div class="record-icon">
+                    <span class="material-symbols-rounded">emergency</span>
+                </div>
+
+                <div class="record-content">
+                    <h3>Emergency Contact</h3>
+                    <p>Primary Contact</p>
+                    <div class="skeleton-line medium"></div>
+                    <p>Phone</p>
+                    <div class="skeleton-line long"></div>
+                </div>
+            </div>
+
+        </div>
+
     </main>
 </section>
-
 <nav class="bottom-navigation module-nav">
 
     <button class="nav-item active" data-page="home">
@@ -230,10 +339,10 @@
         <span>Service</span>
     </button>
 
-    <button class="nav-item" data-page="documents">
-        <span class="material-symbols-rounded">folder</span>
-        <span>Docs</span>
-    </button>
+    <button class="nav-item" data-page="records">
+    <span class="material-symbols-rounded">badge</span>
+    <span>Records</span>
+</button>
 
     <button class="nav-item" data-page="settings">
         <span class="material-symbols-rounded">settings</span>
