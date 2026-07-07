@@ -693,3 +693,69 @@
     opacity:.45;
     cursor:not-allowed;
 }
+
+.garage-hero{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.garage-image{
+    height:170px;
+
+    display:grid;
+    place-items:center;
+
+    overflow:hidden;
+
+    border-radius:18px;
+    background:var(--surface-light);
+}
+
+.garage-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.garage-image span{
+    font-size:72px;
+    color:var(--primary);
+}
+
+.garage-info p{
+    font-size:.85rem;
+}
+
+.garage-info h2{
+    margin:4px 0;
+    font-size:1.6rem;
+}
+
+.garage-info span{
+    color:var(--text-secondary);
+}
+
+.garage-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.garage-stat{
+    margin-bottom:0;
+}
+
+.garage-stat span{
+    color:var(--primary);
+    font-size:28px;
+}
+
+.garage-stat p{
+    margin:8px 0 4px;
+    font-size:.82rem;
+}
+
+.garage-stat h3{
+    font-size:1.05rem;
+}

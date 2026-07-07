@@ -122,7 +122,83 @@
     </main>
 </section>
 
-<nav class="bottom-navigation four-items">
+<section id="garage" class="page">
+    <main class="page-content">
+
+        <div class="page-title">
+            <h1>Garage</h1>
+
+            <button id="edit-bike-button">
+                <span class="material-symbols-rounded">edit</span>
+            </button>
+        </div>
+
+        <div id="bike-profile"></div>
+
+    </main>
+</section>
+
+<section id="finance" class="page">
+    <main class="page-content">
+        <div class="page-title">
+            <h1>Finance</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Next Paycheck</h2>
+            </div>
+            <p>Paycheck planner coming soon.</p>
+        </div>
+    </main>
+</section>
+
+<section id="fuel" class="page">
+    <main class="page-content">
+        <div class="page-title">
+            <h1>Fuel</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Fuel Tracker</h2>
+            </div>
+            <p>No fuel logs yet.</p>
+        </div>
+    </main>
+</section>
+
+<section id="maintenance" class="page">
+    <main class="page-content">
+        <div class="page-title">
+            <h1>Maintenance</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Service Schedule</h2>
+            </div>
+            <p>No service items yet.</p>
+        </div>
+    </main>
+</section>
+
+<section id="documents" class="page">
+    <main class="page-content">
+        <div class="page-title">
+            <h1>Documents</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Storage</h2>
+            </div>
+            <p>Insurance, registration, receipts, and warranty docs later.</p>
+        </div>
+    </main>
+</section>
+
+<nav class="bottom-navigation module-nav">
 
     <button class="nav-item active" data-page="home">
         <span class="material-symbols-rounded">home</span>
@@ -134,9 +210,29 @@
         <span>Goals</span>
     </button>
 
-    <button class="nav-item" data-page="vault">
-        <span class="material-symbols-rounded">account_balance_wallet</span>
-        <span>Vault</span>
+    <button class="nav-item" data-page="garage">
+        <span class="material-symbols-rounded">two_wheeler</span>
+        <span>Garage</span>
+    </button>
+
+    <button class="nav-item" data-page="finance">
+        <span class="material-symbols-rounded">payments</span>
+        <span>Finance</span>
+    </button>
+
+    <button class="nav-item" data-page="fuel">
+        <span class="material-symbols-rounded">local_gas_station</span>
+        <span>Fuel</span>
+    </button>
+
+    <button class="nav-item" data-page="maintenance">
+        <span class="material-symbols-rounded">build</span>
+        <span>Service</span>
+    </button>
+
+    <button class="nav-item" data-page="documents">
+        <span class="material-symbols-rounded">folder</span>
+        <span>Docs</span>
     </button>
 
     <button class="nav-item" data-page="settings">
@@ -173,6 +269,7 @@
 <script src="js/pages.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/transactions.js"></script>
+<script src="js/garage.js"></script>
 <script src="js/app.js"></script>
 <script src="js/transactions.js"></script>
 

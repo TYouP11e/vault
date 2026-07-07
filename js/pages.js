@@ -51,8 +51,8 @@ function renderVault(){
 }
 
 function renderAllPages(){
-
     renderHome();
     renderGoals();
     renderVault();
+    renderGarage();
 }

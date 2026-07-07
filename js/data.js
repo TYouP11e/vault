@@ -125,5 +125,16 @@ let appData = {
             amount: 0,
             date: "2026-07-04"
         }
-    ]
+    ],
+    bike: {
+    name: "Future Ninja 400",
+    make: "Kawasaki",
+    model: "Ninja 400",
+    year: "2022",
+    mileage: 12000,
+    purchasePrice: 5000,
+    insuranceMonthly: 0,
+    image: ""
+},    
 };
+
