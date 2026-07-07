@@ -640,3 +640,56 @@
     line-height:1.6;
 
 }
+
+/* ---------- Goal Details Modal ---------- */
+
+.goal-details-modal{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.goal-modal-icon{
+    width:78px;
+    height:78px;
+
+    display:grid;
+    place-items:center;
+
+    margin:0 auto;
+
+    border-radius:22px;
+
+    background:var(--surface-light);
+    color:var(--primary);
+}
+
+.goal-modal-icon span{
+    font-size:42px;
+}
+
+.goal-modal-info{
+    text-align:center;
+}
+
+.goal-modal-info p{
+    font-size:.9rem;
+}
+
+.goal-modal-info h3{
+    margin:6px 0;
+
+    font-size:1.8rem;
+    letter-spacing:-.04em;
+}
+
+.goal-modal-actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.primary-button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
