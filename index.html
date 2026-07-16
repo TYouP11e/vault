@@ -138,21 +138,188 @@
     </main>
 </section>
  
+<!-- ================================= -->
+<!-- FINANCE -->
+<!-- ================================= -->
+
 <section id="finance" class="page">
+
     <main class="page-content">
+
         <div class="page-title">
-            <h1>Finance</h1>
-        </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h2>Next Paycheck</h2>
+            <div>
+                <h1>Finance</h1>
+                <p class="page-subtitle">Plan every paycheck.</p>
             </div>
-            <p>Paycheck planner coming soon.</p>
-        </div>
-    </main>
-</section>
 
+            <button
+                id="finance-settings-button"
+                class="page-action-button"
+                type="button"
+                aria-label="Edit paycheck settings"
+            >
+                <span class="material-symbols-rounded">tune</span>
+            </button>
+
+        </div>
+
+        <!-- Next Paycheck Hero -->
+
+        <section class="finance-paycheck-card">
+
+            <div class="finance-paycheck-top">
+
+                <div>
+                    <p class="finance-eyebrow">Next Paycheck</p>
+                    <h2 id="next-paycheck-date">Not configured</h2>
+                </div>
+
+                <div class="paycheck-countdown-badge">
+                    <strong id="paycheck-days-left">—</strong>
+                    <span>days</span>
+                </div>
+
+            </div>
+
+            <div class="finance-paycheck-amount">
+
+                <span>Estimated amount</span>
+
+                <strong id="estimated-paycheck">
+                    $0
+                </strong>
+
+            </div>
+
+            <div class="finance-paycheck-progress">
+
+                <div class="progress-bar">
+                    <div
+                        id="paycheck-progress-fill"
+                        class="progress-fill blue"
+                    ></div>
+                </div>
+
+                <p id="paycheck-cycle-label">
+                    Set your payday schedule to begin.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Paycheck Breakdown -->
+
+        <section class="finance-breakdown-grid">
+
+            <article class="finance-summary-card">
+
+                <div class="finance-summary-icon expenses">
+                    <span class="material-symbols-rounded">
+                        receipt_long
+                    </span>
+                </div>
+
+                <p>Planned Expenses</p>
+
+                <h3 id="planned-expenses-total">
+                    $0
+                </h3>
+
+            </article>
+
+            <article class="finance-summary-card">
+
+                <div class="finance-summary-icon savings">
+                    <span class="material-symbols-rounded">
+                        savings
+                    </span>
+                </div>
+
+                <p>Safe to Save</p>
+
+                <h3 id="safe-to-save-total">
+                    $0
+                </h3>
+
+            </article>
+
+        </section>
+
+        <!-- Projected Balance -->
+
+        <section class="card projected-balance-card">
+
+            <div class="card-header">
+                <div>
+                    <p class="finance-eyebrow">After Paycheck</p>
+                    <h2>Projected Savings</h2>
+                </div>
+
+                <span class="material-symbols-rounded projected-icon">
+                    trending_up
+                </span>
+            </div>
+
+            <h3 id="projected-balance">
+                $0
+            </h3>
+
+            <p id="projected-balance-description">
+                Your current savings plus what remains after expenses.
+            </p>
+
+        </section>
+
+        <!-- Expense Plan -->
+
+        <section class="finance-section">
+
+            <div class="finance-section-header">
+
+                <div>
+                    <h2>Paycheck Expenses</h2>
+                    <p>Money reserved before saving.</p>
+                </div>
+
+                <button
+                    id="add-expense-button"
+                    class="small-primary-button"
+                    type="button"
+                >
+                    <span class="material-symbols-rounded">add</span>
+                    Add
+                </button>
+
+            </div>
+
+            <div id="finance-expense-list"></div>
+
+        </section>
+
+        <!-- Empty State / Information -->
+
+        <section class="finance-tip-card">
+
+            <span class="material-symbols-rounded">
+                lightbulb
+            </span>
+
+            <div>
+                <h3>Pay yourself last—but save it first.</h3>
+
+                <p>
+                    Vault subtracts your planned expenses and shows how much
+                    of the next paycheck can safely move into savings.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+</section>
 <section id="fuel" class="page">
     <main class="page-content">
         <div class="page-title">
@@ -379,6 +546,7 @@
 <script src="js/modal.js"></script>
 <script src="js/transactions.js"></script>
 <script src="js/garage.js"></script>
+<script src="js/finance.js"></script>
 <script src="js/app.js"></script>
 <script src="js/transactions.js"></script>
 

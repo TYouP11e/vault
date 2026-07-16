@@ -1025,3 +1025,441 @@
     color:var(--red);
     font-size:.78rem;
 }
+
+/* ==========================================
+   FINANCE
+========================================== */
+
+.page-subtitle{
+    margin-top:4px;
+
+    font-size:.85rem;
+}
+
+.page-action-button{
+    width:46px;
+    height:46px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:var(--radius-md);
+
+    background:var(--surface-light);
+    color:var(--primary);
+
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.page-action-button:active{
+    transform:scale(.96);
+}
+
+/* ---------- Paycheck Hero ---------- */
+
+.finance-paycheck-card{
+    margin-bottom:var(--space-4);
+    padding:22px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(45,124,255,.28);
+    border-radius:var(--radius-xl);
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(45,124,255,.25),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(45,124,255,.15),
+            rgba(19,22,29,.98)
+        );
+
+    box-shadow:var(--shadow-md);
+}
+
+.finance-paycheck-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+}
+
+.finance-eyebrow{
+    color:var(--text-secondary);
+
+    font-size:.78rem;
+    font-weight:var(--weight-medium);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+}
+
+.finance-paycheck-top h2{
+    margin-top:5px;
+
+    font-size:1.35rem;
+}
+
+.paycheck-countdown-badge{
+    min-width:68px;
+    min-height:68px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+
+    background:rgba(9,11,15,.48);
+    backdrop-filter:blur(12px);
+}
+
+.paycheck-countdown-badge strong{
+    font-size:1.55rem;
+    line-height:1;
+}
+
+.paycheck-countdown-badge span{
+    margin-top:4px;
+
+    color:var(--text-secondary);
+    font-size:.7rem;
+}
+
+.finance-paycheck-amount{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:16px;
+
+    margin:26px 0 18px;
+}
+
+.finance-paycheck-amount span{
+    color:var(--text-secondary);
+    font-size:.85rem;
+}
+
+.finance-paycheck-amount strong{
+    font-size:2rem;
+    letter-spacing:-.04em;
+}
+
+.finance-paycheck-progress p{
+    margin-top:8px;
+
+    font-size:.78rem;
+}
+
+/* ---------- Summary Cards ---------- */
+
+.finance-breakdown-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+
+    margin-bottom:var(--space-4);
+}
+
+.finance-summary-card{
+    padding:16px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+
+    background:var(--surface);
+
+    box-shadow:var(--shadow-sm);
+}
+
+.finance-summary-icon{
+    width:42px;
+    height:42px;
+
+    display:grid;
+    place-items:center;
+
+    margin-bottom:12px;
+
+    border-radius:13px;
+}
+
+.finance-summary-icon.expenses{
+    color:var(--orange);
+    background:rgba(249,115,22,.15);
+}
+
+.finance-summary-icon.savings{
+    color:var(--green);
+    background:rgba(74,222,128,.15);
+}
+
+.finance-summary-card p{
+    font-size:.75rem;
+}
+
+.finance-summary-card h3{
+    margin-top:4px;
+
+    font-size:1.25rem;
+}
+
+/* ---------- Projected Balance ---------- */
+
+.projected-balance-card h3{
+    margin-top:8px;
+
+    font-size:1.8rem;
+    letter-spacing:-.04em;
+}
+
+.projected-balance-card > p{
+    margin-top:6px;
+
+    font-size:.82rem;
+}
+
+.projected-icon{
+    color:var(--green);
+}
+
+/* ---------- Finance Sections ---------- */
+
+.finance-section{
+    margin-bottom:var(--space-4);
+}
+
+.finance-section-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+
+    margin-bottom:12px;
+}
+
+.finance-section-header h2{
+    font-size:1.05rem;
+}
+
+.finance-section-header p{
+    margin-top:3px;
+
+    font-size:.78rem;
+}
+
+.small-primary-button{
+    min-height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+
+    padding:0 13px;
+
+    border-radius:13px;
+
+    background:var(--primary);
+    color:white;
+
+    font-size:.82rem;
+    font-weight:var(--weight-semibold);
+}
+
+.small-primary-button span{
+    font-size:20px;
+}
+
+/* ---------- Expense Rows ---------- */
+
+#finance-expense-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.finance-expense-row{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px;
+
+    text-align:left;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+
+    background:var(--surface);
+
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+.finance-expense-row:active{
+    transform:scale(.985);
+}
+
+.finance-expense-row.paid{
+    opacity:.55;
+}
+
+.finance-expense-row.paid h3{
+    text-decoration:line-through;
+}
+
+.finance-expense-icon{
+    width:46px;
+    height:46px;
+
+    display:grid;
+    place-items:center;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+}
+
+.finance-expense-icon.large{
+    width:72px;
+    height:72px;
+
+    margin:0 auto;
+}
+
+.finance-expense-icon.blue{
+    color:var(--primary);
+    background:rgba(45,124,255,.15);
+}
+
+.finance-expense-icon.green{
+    color:var(--green);
+    background:rgba(74,222,128,.15);
+}
+
+.finance-expense-icon.orange{
+    color:var(--orange);
+    background:rgba(249,115,22,.15);
+}
+
+.finance-expense-icon.purple{
+    color:var(--purple);
+    background:rgba(139,92,246,.15);
+}
+
+.finance-expense-icon.yellow{
+    color:var(--yellow);
+    background:rgba(250,204,21,.15);
+}
+
+.finance-expense-icon.red{
+    color:var(--red);
+    background:rgba(239,68,68,.15);
+}
+
+.finance-expense-info{
+    flex:1;
+    min-width:0;
+}
+
+.finance-expense-info h3{
+    overflow:hidden;
+
+    font-size:.9rem;
+
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.finance-expense-info p{
+    margin-top:3px;
+
+    font-size:.75rem;
+}
+
+.finance-expense-row > strong{
+    flex-shrink:0;
+
+    font-size:.9rem;
+}
+
+.expense-chevron{
+    color:var(--text-muted);
+    font-size:20px;
+}
+
+/* ---------- Expense Details ---------- */
+
+.expense-details-modal{
+    text-align:center;
+}
+
+.expense-details-modal > p{
+    margin-top:12px;
+}
+
+.expense-details-modal > h3{
+    margin-top:5px;
+
+    font-size:2rem;
+    letter-spacing:-.04em;
+}
+
+.expense-detail-actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin-top:24px;
+}
+
+/* ---------- Finance Tip ---------- */
+
+.finance-tip-card{
+    display:flex;
+    align-items:flex-start;
+    gap:13px;
+
+    padding:16px;
+
+    border:1px solid rgba(45,124,255,.2);
+    border-radius:var(--radius-lg);
+
+    background:rgba(45,124,255,.07);
+}
+
+.finance-tip-card > span{
+    color:var(--primary);
+}
+
+.finance-tip-card h3{
+    font-size:.9rem;
+}
+
+.finance-tip-card p{
+    margin-top:5px;
+
+    font-size:.78rem;
+}
+
+.modal-helper-text{
+    padding:12px;
+
+    border-radius:12px;
+
+    background:rgba(45,124,255,.07);
+
+    font-size:.78rem;
+}

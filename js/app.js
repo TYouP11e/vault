@@ -29,6 +29,12 @@ function initializeApp(){
 
     initializeActivityEvents();
 
+    initializeGarageEvents();
+
+    initializeFinanceEvents();
+
+    
+
 }
 
 /* ==========================================
@@ -57,4 +63,4 @@ if("serviceWorker" in navigator){
     });
 
 }
-initializeGarageEvents();
+

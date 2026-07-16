@@ -136,5 +136,32 @@ let appData = {
     insuranceMonthly: 0,
     image: ""
 },    
+
+finance: {
+    paycheckAmount: 600,
+    lastPaycheckDate: "2026-07-03",
+    frequencyDays: 14,
+
+    expenses: [
+        {
+            id: 1,
+            title: "Motorcycle Insurance",
+            category: "Insurance",
+            amount: 27,
+            icon: "shield",
+            color: "green",
+            paid: false
+        },
+        {
+            id: 2,
+            title: "Fuel",
+            category: "Transportation",
+            amount: 40,
+            icon: "local_gas_station",
+            color: "orange",
+            paid: false
+        }
+    ]
+},
 };
 

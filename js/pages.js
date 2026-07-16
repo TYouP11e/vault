@@ -55,4 +55,5 @@ function renderAllPages(){
     renderGoals();
     renderVault();
     renderGarage();
+    renderFinance();
 }
