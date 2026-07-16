@@ -32,27 +32,28 @@ function initializeApp(){
 }
 
 /* ==========================================
-   SERVICE WORKER
+   TEMPORARILY DISABLE SERVICE WORKERS
 ========================================== */
 
 if("serviceWorker" in navigator){
 
     window.addEventListener("load", async () => {
-        try{
-            const registration = await navigator.serviceWorker.register(
-                "./service-worker.js",
-                {
-                    updateViaCache: "none"
-                }
-            );
 
-            await registration.update();
+        const registrations =
+            await navigator.serviceWorker.getRegistrations();
 
-            console.log("Vault service worker registered.");
-
-        }catch(error){
-            console.error("Service worker registration failed:", error);
+        for(const registration of registrations){
+            await registration.unregister();
         }
+
+        const cacheNames = await caches.keys();
+
+        for(const cacheName of cacheNames){
+            await caches.delete(cacheName);
+        }
+
+        console.log("Vault service workers and caches cleared.");
+
     });
 
 }
