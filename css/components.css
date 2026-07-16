@@ -849,3 +849,179 @@
 .skeleton-line.long{
     width:86%;
 }
+
+/* ==========================================
+   TRANSACTION DETAILS
+========================================== */
+
+.activity-row{
+    width:100%;
+    text-align:left;
+}
+
+.activity-row:hover{
+    background:rgba(255,255,255,.045);
+}
+
+.activity-row:active{
+    transform:scale(.985);
+}
+
+.activity-info p{
+    max-width:190px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* ---------- Text Areas ---------- */
+
+.modal-form textarea{
+    width:100%;
+    min-height:108px;
+
+    padding:14px;
+
+    resize:vertical;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+
+    background:var(--surface-light);
+    color:var(--text);
+
+    font:inherit;
+    line-height:1.5;
+
+    outline:none;
+}
+
+.modal-form textarea:focus,
+.modal-form input:focus,
+.modal-form select:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(45,124,255,.12);
+}
+
+.optional-label{
+    margin-left:4px;
+
+    font-size:.72rem;
+    color:var(--text-muted);
+}
+
+/* ---------- Details Hero ---------- */
+
+.transaction-details{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.transaction-detail-hero{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    text-align:center;
+}
+
+.activity-icon.large{
+    width:68px;
+    height:68px;
+
+    margin-bottom:12px;
+}
+
+.activity-icon.large span{
+    font-size:34px;
+}
+
+.transaction-detail-hero > p{
+    font-size:.85rem;
+}
+
+.transaction-detail-hero h3{
+    margin-top:4px;
+
+    font-size:2rem;
+    letter-spacing:-.04em;
+}
+
+.transaction-detail-hero h3.deposit{
+    color:var(--green);
+}
+
+.transaction-detail-hero h3.withdraw{
+    color:var(--red);
+}
+
+/* ---------- Details List ---------- */
+
+.transaction-detail-list{
+    overflow:hidden;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+
+    background:var(--surface-light);
+}
+
+.transaction-detail-item{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+
+    padding:14px 16px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.transaction-detail-item:last-child{
+    border-bottom:none;
+}
+
+.transaction-detail-item > span{
+    color:var(--text-secondary);
+    font-size:.85rem;
+}
+
+.transaction-detail-item strong{
+    text-align:right;
+
+    font-size:.9rem;
+    font-weight:var(--weight-medium);
+}
+
+.transaction-detail-item.description-item{
+    display:block;
+}
+
+.transaction-detail-item.description-item p{
+    margin-top:8px;
+
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+
+    color:var(--text);
+    font-size:.9rem;
+}
+
+/* ---------- Inline Errors ---------- */
+
+.input-error{
+    border-color:var(--red) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(239,68,68,.12) !important;
+}
+
+.form-error{
+    margin-top:-6px;
+
+    color:var(--red);
+    font-size:.78rem;
+}

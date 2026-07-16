@@ -54,58 +54,218 @@ modalOverlay.addEventListener("click", function(event){
    MODAL TEMPLATES
 ========================================== */
 
-function createDepositModal(){
+/* ==========================================
+   TRANSACTION MODALS
+========================================== */
+
+function createTransactionModal(type){
+    const isDeposit = type === "deposit";
 
     return `
-
         <div class="modal-form">
 
-            <label>Amount</label>
+            <label for="transaction-title">
+                Name
+            </label>
+
+            <input
+                id="transaction-title"
+                type="text"
+                maxlength="50"
+                placeholder="${isDeposit ? "Paycheck" : "Bought gloves"}"
+                value="${isDeposit ? "Deposit" : "Withdraw"}"
+            >
+
+            <label for="transaction-amount">
+                Amount
+            </label>
 
             <input
                 id="transaction-amount"
                 type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
                 placeholder="0.00"
-                autofocus
             >
 
-            <button id="confirm-deposit" class="primary-button">
+            <label for="transaction-description">
+                Description
+                <span class="optional-label">Optional</span>
+            </label>
 
-                Deposit
+            <textarea
+                id="transaction-description"
+                rows="4"
+                maxlength="300"
+                placeholder="${isDeposit
+                    ? "Example: DQ paycheck after tax"
+                    : "Example: Alpinestars gloves from Argyll Motorsports"}"
+            ></textarea>
 
+            <label for="transaction-date">
+                Date
+            </label>
+
+            <input
+                id="transaction-date"
+                type="date"
+                value="${getToday()}"
+            >
+
+            <button
+                id="confirm-transaction"
+                class="primary-button"
+                type="button"
+            >
+                ${isDeposit ? "Add Deposit" : "Add Withdrawal"}
             </button>
 
         </div>
-
     `;
+}
 
+function createDepositModal(){
+    return createTransactionModal("deposit");
 }
 
 function createWithdrawModal(){
+    return createTransactionModal("withdraw");
+}
+
+function createTransactionDetailsModal(transaction){
+    const isDeposit = transaction.type === "deposit";
 
     return `
+        <div class="transaction-details">
 
-        <div class="modal-form">
+            <div class="transaction-detail-hero">
 
-            <label>Amount</label>
+                <div class="activity-icon large ${transaction.type}">
+                    <span class="material-symbols-rounded">
+                        ${isDeposit ? "arrow_downward" : "arrow_upward"}
+                    </span>
+                </div>
 
-            <input
-                id="transaction-amount"
-                type="number"
-                placeholder="0.00"
-                autofocus
+                <p>${isDeposit ? "Deposit" : "Withdrawal"}</p>
+
+                <h3 class="${transaction.type}">
+                    ${isDeposit ? "+" : "-"}${formatMoney(transaction.amount)}
+                </h3>
+
+            </div>
+
+            <div class="transaction-detail-list">
+
+                <div class="transaction-detail-item">
+                    <span>Name</span>
+                    <strong>${transaction.title || (isDeposit ? "Deposit" : "Withdraw")}</strong>
+                </div>
+
+                <div class="transaction-detail-item">
+                    <span>Date</span>
+                    <strong>${formatDate(transaction.date)}</strong>
+                </div>
+
+                <div class="transaction-detail-item description-item">
+                    <span>Description</span>
+                    <p>
+                        ${transaction.description || "No description added."}
+                    </p>
+                </div>
+
+            </div>
+
+            <button
+                id="edit-transaction-button"
+                class="primary-button"
+                type="button"
             >
-
-            <button id="confirm-withdraw" class="primary-button">
-
-                Withdraw
-
+                <span class="material-symbols-rounded">edit</span>
+                Edit Transaction
             </button>
 
         </div>
-
     `;
+}
 
+function createEditTransactionModal(transaction){
+    return `
+        <div class="modal-form">
+
+            <label for="edit-transaction-title">
+                Name
+            </label>
+
+            <input
+                id="edit-transaction-title"
+                type="text"
+                maxlength="50"
+                value="${escapeHTMLAttribute(
+                    transaction.title ||
+                    (transaction.type === "deposit" ? "Deposit" : "Withdraw")
+                )}"
+            >
+
+            <label for="edit-transaction-amount">
+                Amount
+            </label>
+
+            <input
+                id="edit-transaction-amount"
+                type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                value="${transaction.amount}"
+            >
+
+            <label for="edit-transaction-description">
+                Description
+                <span class="optional-label">Optional</span>
+            </label>
+
+            <textarea
+                id="edit-transaction-description"
+                rows="4"
+                maxlength="300"
+            >${escapeHTML(transaction.description || "")}</textarea>
+
+            <label for="edit-transaction-date">
+                Date
+            </label>
+
+            <input
+                id="edit-transaction-date"
+                type="date"
+                value="${transaction.date}"
+            >
+
+            <button
+                id="save-transaction-button"
+                class="primary-button"
+                type="button"
+            >
+                Save Changes
+            </button>
+
+        </div>
+    `;
+}
+
+/* ---------- Safe text helpers ---------- */
+
+function escapeHTML(value){
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function escapeHTMLAttribute(value){
+    return escapeHTML(value);
 }
 
 function createGoalModal(){

@@ -27,6 +27,8 @@ function initializeApp(){
 
     renderAllPages();
 
+    initializeActivityEvents();
+
 }
 
 /* ==========================================

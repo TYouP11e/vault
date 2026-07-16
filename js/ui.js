@@ -123,7 +123,11 @@ function createActivityHTML(transaction){
     const isDeposit = transaction.type === "deposit";
 
     return `
-        <div class="activity-row">
+        <button
+            class="activity-row"
+            data-transaction-id="${transaction.id}"
+            type="button"
+        >
 
             <div class="activity-icon ${transaction.type}">
                 <span class="material-symbols-rounded">
@@ -133,9 +137,13 @@ function createActivityHTML(transaction){
 
             <div class="activity-info">
 
-                <h4>${transaction.title}</h4>
+                <h4>${transaction.title || (isDeposit ? "Deposit" : "Withdraw")}</h4>
 
-                <p>${formatDate(transaction.date)}</p>
+                <p>
+                    ${transaction.description
+                        ? transaction.description
+                        : formatDate(transaction.date)}
+                </p>
 
             </div>
 
@@ -143,7 +151,7 @@ function createActivityHTML(transaction){
                 ${isDeposit ? "+" : "-"}${formatMoney(transaction.amount)}
             </div>
 
-        </div>
+        </button>
     `;
 }
 
