@@ -158,6 +158,66 @@ function getPaycheckCycleProgress(){
 /* ==========================================
    FINANCE CALCULATIONS
 ========================================== */
+function getEstimatedRegularPay(){
+
+    ensureFinanceData();
+
+    const rate =
+        Number(appData.finance.hourlyRate || 0);
+
+    const hours =
+        Number(appData.finance.regularHours || 0);
+
+    return rate * hours;
+
+}
+
+function getEstimatedPremiumPay(){
+
+    ensureFinanceData();
+
+    const rate =
+        Number(appData.finance.hourlyRate || 0);
+
+    const hours =
+        Number(appData.finance.premiumHours || 0);
+
+    const multiplier =
+        Number(appData.finance.premiumMultiplier || 1.5);
+
+    return rate * hours * multiplier;
+
+}
+
+function getEstimatedGrossPay(){
+
+    return getEstimatedRegularPay() +
+        getEstimatedPremiumPay();
+
+}
+
+function getEstimatedDeductions(){
+
+    const grossPay =
+        getEstimatedGrossPay();
+
+    const deductionPercent =
+        Number(appData.finance.deductionPercent || 0);
+
+    return grossPay *
+        Math.max(deductionPercent, 0) / 100;
+
+}
+
+function getEstimatedNetPay(){
+
+    return Math.max(
+        getEstimatedGrossPay() -
+        getEstimatedDeductions(),
+        0
+    );
+
+}
 
 function getFinanceExpenseTotal(){
 
@@ -236,6 +296,15 @@ function renderFinance(){
 
     const paycheckAmount =
         Number(appData.finance.paycheckAmount || 0);
+    
+    const estimatedGrossPay =
+    getEstimatedGrossPay();
+
+    const estimatedDeductions =
+    getEstimatedDeductions();
+
+    const estimatedNetPay =
+    getEstimatedNetPay();
 
     const dateElement =
         document.getElementById("next-paycheck-date");
@@ -290,7 +359,38 @@ function renderFinance(){
                 : "Your planned expenses currently use the entire paycheck.";
 
     renderFinanceExpenses();
+    
+    const regularHoursElement =
+    document.getElementById(
+        "estimated-regular-hours"
+    );
 
+if(regularHoursElement){
+
+    regularHoursElement.textContent =
+        formatHours(appData.finance.regularHours);
+
+    document
+        .getElementById("estimated-premium-hours")
+        .textContent =
+            formatHours(appData.finance.premiumHours);
+
+    document
+        .getElementById("estimated-gross-pay")
+        .textContent =
+            formatMoney(estimatedGrossPay);
+
+    document
+        .getElementById("estimated-deductions")
+        .textContent =
+            `−${formatMoney(estimatedDeductions)}`;
+
+    document
+        .getElementById("estimated-net-pay")
+        .textContent =
+            formatMoney(estimatedNetPay);
+
+}
 }
 
 function renderFinanceExpenses(){
@@ -435,6 +535,33 @@ function initializeFinanceEvents(){
         );
 
     }
+    const editPayEstimatorButton =
+    document.getElementById(
+        "edit-pay-estimator-button"
+    );
+
+const applyPayEstimateButton =
+    document.getElementById(
+        "apply-pay-estimate-button"
+    );
+
+if(editPayEstimatorButton){
+
+    editPayEstimatorButton.addEventListener(
+        "click",
+        openPayEstimatorModal
+    );
+
+}
+
+if(applyPayEstimateButton){
+
+    applyPayEstimateButton.addEventListener(
+        "click",
+        applyEstimatedPaycheck
+    );
+
+}
 
 }
 
@@ -1131,5 +1258,479 @@ function getExpenseColor(category){
     };
 
     return colors[category] || "blue";
+
+}
+
+if(!Number.isFinite(Number(appData.finance.hourlyRate))){
+    appData.finance.hourlyRate = 13;
+}
+
+if(!Number.isFinite(Number(appData.finance.regularHours))){
+    appData.finance.regularHours = 0;
+}
+
+if(!Number.isFinite(Number(appData.finance.premiumHours))){
+    appData.finance.premiumHours = 0;
+}
+
+if(!Number.isFinite(Number(appData.finance.premiumMultiplier))){
+    appData.finance.premiumMultiplier = 1.5;
+}
+
+if(!Number.isFinite(Number(appData.finance.deductionPercent))){
+    appData.finance.deductionPercent = 0;
+}
+
+function formatHours(hours){
+
+    const value = Number(hours || 0);
+
+    return Number.isInteger(value)
+        ? String(value)
+        : value.toFixed(1);
+
+}
+
+/* ==========================================
+   PAY ESTIMATOR
+========================================== */
+
+function openPayEstimatorModal(){
+
+    ensureFinanceData();
+
+    openModal(
+        "Pay Estimator",
+        `
+            <div class="modal-form">
+
+                <label for="estimator-hourly-rate">
+                    Hourly Wage
+                </label>
+
+                <input
+                    id="estimator-hourly-rate"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    inputmode="decimal"
+                    value="${appData.finance.hourlyRate}"
+                >
+
+                <label for="estimator-regular-hours">
+                    Regular Hours
+                </label>
+
+                <input
+                    id="estimator-regular-hours"
+                    type="number"
+                    min="0"
+                    step="0.25"
+                    inputmode="decimal"
+                    value="${appData.finance.regularHours}"
+                >
+
+                <div class="modal-field-row">
+
+                    <div>
+                        <label for="estimator-premium-hours">
+                            Premium Hours
+                        </label>
+
+                        <input
+                            id="estimator-premium-hours"
+                            type="number"
+                            min="0"
+                            step="0.25"
+                            inputmode="decimal"
+                            value="${appData.finance.premiumHours}"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="estimator-premium-multiplier">
+                            Multiplier
+                        </label>
+
+                        <select id="estimator-premium-multiplier">
+
+                            <option
+                                value="1.5"
+                                ${
+                                    Number(
+                                        appData.finance
+                                            .premiumMultiplier
+                                    ) === 1.5
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                1.5×
+                            </option>
+
+                            <option
+                                value="2"
+                                ${
+                                    Number(
+                                        appData.finance
+                                            .premiumMultiplier
+                                    ) === 2
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                2×
+                            </option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <label for="estimator-deductions">
+                    Estimated Deductions
+                </label>
+
+                <div class="percentage-input">
+
+                    <input
+                        id="estimator-deductions"
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        inputmode="decimal"
+                        value="${appData.finance.deductionPercent}"
+                    >
+
+                    <span>%</span>
+
+                </div>
+
+                <p class="modal-helper-text">
+                    Use premium hours for holiday pay or
+                    overtime. Deductions are only an estimate.
+                </p>
+
+                <div
+                    id="estimator-live-preview"
+                    class="estimator-live-preview"
+                ></div>
+
+                <button
+                    id="save-pay-estimator-button"
+                    class="primary-button"
+                    type="button"
+                >
+                    Save Estimate
+                </button>
+
+            </div>
+        `
+    );
+
+    const estimatorInputs = [
+        "estimator-hourly-rate",
+        "estimator-regular-hours",
+        "estimator-premium-hours",
+        "estimator-premium-multiplier",
+        "estimator-deductions"
+    ];
+
+    estimatorInputs.forEach(inputId => {
+
+        document
+            .getElementById(inputId)
+            .addEventListener(
+                "input",
+                updatePayEstimatorPreview
+            );
+
+    });
+
+    document
+        .getElementById(
+            "save-pay-estimator-button"
+        )
+        .addEventListener(
+            "click",
+            savePayEstimator
+        );
+
+    updatePayEstimatorPreview();
+
+}
+
+function readPayEstimatorForm(){
+
+    return {
+        hourlyRate: Number(
+            document
+                .getElementById(
+                    "estimator-hourly-rate"
+                )
+                .value
+        ),
+
+        regularHours: Number(
+            document
+                .getElementById(
+                    "estimator-regular-hours"
+                )
+                .value
+        ),
+
+        premiumHours: Number(
+            document
+                .getElementById(
+                    "estimator-premium-hours"
+                )
+                .value
+        ),
+
+        premiumMultiplier: Number(
+            document
+                .getElementById(
+                    "estimator-premium-multiplier"
+                )
+                .value
+        ),
+
+        deductionPercent: Number(
+            document
+                .getElementById(
+                    "estimator-deductions"
+                )
+                .value
+        )
+    };
+
+}
+
+function calculatePayEstimate(values){
+
+    const regularPay =
+        values.hourlyRate *
+        values.regularHours;
+
+    const premiumPay =
+        values.hourlyRate *
+        values.premiumHours *
+        values.premiumMultiplier;
+
+    const grossPay =
+        regularPay + premiumPay;
+
+    const deductions =
+        grossPay *
+        values.deductionPercent / 100;
+
+    return {
+        regularPay,
+        premiumPay,
+        grossPay,
+        deductions,
+        netPay: Math.max(
+            grossPay - deductions,
+            0
+        )
+    };
+
+}
+
+function updatePayEstimatorPreview(){
+
+    const preview =
+        document.getElementById(
+            "estimator-live-preview"
+        );
+
+    if(!preview){
+        return;
+    }
+
+    const values =
+        readPayEstimatorForm();
+
+    const estimate =
+        calculatePayEstimate(values);
+
+    preview.innerHTML = `
+        <div>
+            <span>Gross</span>
+            <strong>
+                ${formatMoney(estimate.grossPay)}
+            </strong>
+        </div>
+
+        <div>
+            <span>Take-Home</span>
+            <strong>
+                ${formatMoney(estimate.netPay)}
+            </strong>
+        </div>
+    `;
+
+}
+
+function savePayEstimator(){
+
+    const values =
+        readPayEstimatorForm();
+
+    const inputs = {
+        hourlyRate: document.getElementById(
+            "estimator-hourly-rate"
+        ),
+
+        regularHours: document.getElementById(
+            "estimator-regular-hours"
+        ),
+
+        premiumHours: document.getElementById(
+            "estimator-premium-hours"
+        ),
+
+        deductionPercent: document.getElementById(
+            "estimator-deductions"
+        )
+    };
+
+    if(
+        !Number.isFinite(values.hourlyRate) ||
+        values.hourlyRate < 0
+    ){
+
+        showInputError(
+            inputs.hourlyRate,
+            "Enter a valid hourly wage."
+        );
+
+        return;
+
+    }
+
+    if(
+        !Number.isFinite(values.regularHours) ||
+        values.regularHours < 0
+    ){
+
+        showInputError(
+            inputs.regularHours,
+            "Enter valid regular hours."
+        );
+
+        return;
+
+    }
+
+    if(
+        !Number.isFinite(values.premiumHours) ||
+        values.premiumHours < 0
+    ){
+
+        showInputError(
+            inputs.premiumHours,
+            "Enter valid premium hours."
+        );
+
+        return;
+
+    }
+
+    if(
+        !Number.isFinite(values.deductionPercent) ||
+        values.deductionPercent < 0 ||
+        values.deductionPercent > 100
+    ){
+
+        showInputError(
+            inputs.deductionPercent,
+            "Deductions must be between 0 and 100%."
+        );
+
+        return;
+
+    }
+
+    appData.finance.hourlyRate =
+        values.hourlyRate;
+
+    appData.finance.regularHours =
+        values.regularHours;
+
+    appData.finance.premiumHours =
+        values.premiumHours;
+
+    appData.finance.premiumMultiplier =
+        values.premiumMultiplier;
+
+    appData.finance.deductionPercent =
+        values.deductionPercent;
+
+    saveData();
+    renderFinance();
+    closeModal();
+
+}
+
+function applyEstimatedPaycheck(){
+
+    const estimatedNetPay =
+        getEstimatedNetPay();
+
+    appData.finance.paycheckAmount =
+        estimatedNetPay;
+
+    saveData();
+    renderFinance();
+
+    showFinanceToast(
+        `${formatMoney(estimatedNetPay)} applied as your next paycheck.`
+    );
+
+}
+
+function showFinanceToast(message){
+
+    const oldToast =
+        document.querySelector(
+            ".vault-toast"
+        );
+
+    if(oldToast){
+        oldToast.remove();
+    }
+
+    const toast =
+        document.createElement("div");
+
+    toast.className = "vault-toast";
+
+    toast.innerHTML = `
+        <span class="material-symbols-rounded">
+            check_circle
+        </span>
+
+        <p>${escapeHTML(message)}</p>
+    `;
+
+    document
+        .querySelector(".app")
+        .appendChild(toast);
+
+    requestAnimationFrame(() => {
+        toast.classList.add("visible");
+    });
+
+    setTimeout(() => {
+
+        toast.classList.remove("visible");
+
+        setTimeout(() => {
+            toast.remove();
+        }, 250);
+
+    }, 2500);
 
 }

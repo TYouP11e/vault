@@ -142,6 +142,12 @@ finance: {
     lastPaycheckDate: "2026-07-03",
     frequencyDays: 14,
 
+    hourlyRate: 13,
+    regularHours: 40,
+    premiumHours: 0,
+    premiumMultiplier: 1.5,
+    deductionPercent: 0,
+
     expenses: [
         {
             id: 1,

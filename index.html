@@ -209,6 +209,79 @@
 
         </section>
 
+        <!-- Pay Estimator -->
+
+<section class="pay-estimator-card">
+
+    <div class="finance-section-header">
+
+        <div>
+            <p class="finance-eyebrow">Pay Estimator</p>
+            <h2>Hours to Paycheck</h2>
+        </div>
+
+        <button
+            id="edit-pay-estimator-button"
+            class="page-action-button"
+            type="button"
+            aria-label="Edit pay estimate"
+        >
+            <span class="material-symbols-rounded">
+                calculate
+            </span>
+        </button>
+
+    </div>
+
+    <div class="pay-estimator-hours">
+
+        <div class="pay-estimator-stat">
+            <span>Regular Hours</span>
+            <strong id="estimated-regular-hours">0</strong>
+        </div>
+
+        <div class="pay-estimator-divider"></div>
+
+        <div class="pay-estimator-stat">
+            <span>Premium Hours</span>
+            <strong id="estimated-premium-hours">0</strong>
+        </div>
+
+    </div>
+
+    <div class="pay-estimator-breakdown">
+
+        <div>
+            <span>Gross Pay</span>
+            <strong id="estimated-gross-pay">$0</strong>
+        </div>
+
+        <div>
+            <span>Estimated Deductions</span>
+            <strong id="estimated-deductions">−$0</strong>
+        </div>
+
+        <div class="pay-estimator-net">
+            <span>Estimated Take-Home</span>
+            <strong id="estimated-net-pay">$0</strong>
+        </div>
+
+    </div>
+
+    <button
+        id="apply-pay-estimate-button"
+        class="primary-button"
+        type="button"
+    >
+        <span class="material-symbols-rounded">
+            check
+        </span>
+
+        Use as Next Paycheck
+    </button>
+
+</section>
+
         <!-- Paycheck Breakdown -->
 
         <section class="finance-breakdown-grid">
