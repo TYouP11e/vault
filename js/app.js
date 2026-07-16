@@ -64,3 +64,5 @@ if("serviceWorker" in navigator){
 
 }
 
+initializeFinanceEvents();
+
