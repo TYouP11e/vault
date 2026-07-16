@@ -29,8 +29,29 @@ function initializeApp(){
 
 }
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./service-worker.js");
-}
+/* ==========================================
+   SERVICE WORKER
+========================================== */
 
+if("serviceWorker" in navigator){
+
+    window.addEventListener("load", async () => {
+        try{
+            const registration = await navigator.serviceWorker.register(
+                "./service-worker.js",
+                {
+                    updateViaCache: "none"
+                }
+            );
+
+            await registration.update();
+
+            console.log("Vault service worker registered.");
+
+        }catch(error){
+            console.error("Service worker registration failed:", error);
+        }
+    });
+
+}
 initializeGarageEvents();
